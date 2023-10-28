@@ -1,0 +1,24 @@
+Challenges:
+
+1 - duplicate box arts on Hero - solution: had to clear the gameContainer before adding cover arts...
+
+why? The setInterval function in your code causes the contents of the gameContainer div to appear as if they persist between renders due to the way it interacts with React's rendering cycle and the timing of updates.
+
+Here's how it happens:
+
+The component initially renders, and during this render, the cover arts are created and appended to the gameContainer.
+
+The setInterval function starts running after the initial render. It schedules a function to run periodically at a specified interval (in this case, every 10 seconds).
+
+When the setInterval function runs and calls the function that moves the cover arts (moveBoxArts), it doesn't remove the existing cover arts. Instead, it adjusts their positions. The existing cover arts in the gameContainer are still there; they've just been moved to new positions.
+
+When React triggers a re-render of the component (for example, due to a state change or other updates), it doesn't automatically remove or replace the elements within the gameContainer. The elements within gameContainer persist because they are not part of React's virtual DOM.
+
+As a result, new cover arts are created and appended to the existing ones, which makes it appear as if they persist between renders.
+
+To avoid this, it's a good practice to clear the container explicitly before appending new elements if you don't want the old elements to persist. This ensures that you always have a clean slate for the new content during each render.
+
+Backlog - 
+Tinder style swiping mechanism for matches.
+
+Three.js dynamic background on hero - with periodic table example, except replacing the elements with box arts.
