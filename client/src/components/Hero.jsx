@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import '../index.css';
 import BoxArtGraphic from './BoxArtGraphic';
+import RecommenderForm from './RecommenderForm';
 import pixelHeart from '../assets/pixel-heart.png';
 import axios from 'axios';
 
 const Hero = () => {
-        
+    //actually, since the input field is here
     // useEffect(() => {
     //     const apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/games';
 
@@ -52,19 +53,10 @@ const Hero = () => {
     //             });
     //         },[]);
 
-
+    
     return (
         <div className="--hero-container">
-            <div className="--hero-text-container">
-                <img src={pixelHeart} alt="" srcset="" className='--hero-pixel-heart-img'/>
-                <h1>Welcome to GameHarmony!</h1>
-                <h2>Ready to fall for a new game?</h2>
-                <p>Start by entering the name of a game you like below:</p>
-                <form className='--hero-form'>
-                    <input type="text" name="game-search" id="game-search" placeholder="Enter a game name" />
-                    <button type="submit">GO!</button>
-                </form>
-            </div>
+            <RecommenderForm />
             <BoxArtGraphic />
         </div>
     );

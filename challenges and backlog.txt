@@ -18,7 +18,30 @@ As a result, new cover arts are created and appended to the existing ones, which
 
 To avoid this, it's a good practice to clear the container explicitly before appending new elements if you don't want the old elements to persist. This ensures that you always have a clean slate for the new content during each render.
 
+
+2 - Ended up having to learn and utilize useContext API to handle state between the Hero and the Recommender components
+
+Why? So... the user will enter the name of a game they like and it will query IGDB. and that's supposed to occur on a view component, main, that has both a <Nav /> and a <RecommenderForm />
+
+I'm trying to figure out... how am i going to pass down props (which will contain the result of the query to the IGDB API) to the Recommender component, if 1) it's a separate Route via
+
+        <Route path="/recommender" element={<Recommender />}></Route>
+
+I don't think RecommenderForm has any way of being Recommender's parent right...? Unless I render Recommender somewhere in RecommenderForm's return (), which I don't want to do because again, I want recommender is going to be rendered on it's own, just with a <Nav /> component..
+
+Would useContext be the best course of action here...? Hmmm i think the contextAPI would be the best choice. Reason being is because I can go from <Main /> to <Hero /> to <RecommenderForm /> to pass props down, but I get stuck there because I am not rendering <Recommender /> in my <RecommenderForm />'s return statement. That's just not the architecture of my app. Once the user submits their input they should be routed to /recommender. I need some way to put the result of <RecommenderForm />'s handling of the user's input and the subsequent call to the API into state, then pass that state to <Recommender /> without <Recommender /> becoming a child of <RecommenderForm />, because i don't think i have any way of doing so
+
+
+3 - Will likely go to the backlog, but creating / implementing a game title input recommendation sanitizer (Levenshtein distance or Jaccard similarity???)...
+
+why?
+
+currently, I'm querying the database directly with whatever the user inputs. However, you must enter the name EXACTLY as its cataloged in the IGDB API database, or else you'll get nothing. I even tried typing The Legend Of Zelda: Tears of the Kingdom and it gave me undefined because I had capitalized the "o" in the first "of".... is there any way i can sanitize the input? or am i just at the mercy of the API?
+
 Backlog - 
+
+Fix styling for responsiveness & mobile (write media queries)
+
 Tinder style swiping mechanism for matches.
 
 Three.js dynamic background on hero - with periodic table example, except replacing the elements with box arts.

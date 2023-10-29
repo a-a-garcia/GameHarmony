@@ -138,10 +138,6 @@ nav {
   height: 100px;
 }
 
-.--hero-text-container {
-  color: var(--primary-color);
-  line-height: 1.5;
-}
 
 .--hero-text-container h1,h2,p {
   margin-bottom: 1.5rem; 
@@ -191,6 +187,10 @@ nav {
 }
 
 /* recommender */
+.--recommender-form-text-container {
+  color: var(--primary-color);
+  line-height: 1.5;
+}
 
 .--recommender-container {
   display: flex;
@@ -215,6 +215,11 @@ nav {
   width: 460px;
   box-shadow: var(--primary-box-shadow);
   border-radius: 35px;
+  background-size: cover;
+}
+
+.--recommender-box-art-holder:hover{
+  border: 1px solid var(--primary-color);
 }
 
 .--recommender-instructions-holder {
@@ -223,6 +228,8 @@ nav {
   box-shadow: var(--primary-box-shadow);
   background-color: #2F2E41;
   border-radius: 35px;
+  padding: 25px;
+  font-size: 1.75rem;
 }
 
 .--recommender-dislike-button, .--recommender-like-button {
