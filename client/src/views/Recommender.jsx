@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import '../index.css'
 import Nav from '../components/Nav'
 import recommenderGraphicSvg from '../assets/recommender-graphic.svg'
@@ -14,7 +14,15 @@ const Recommender = () => {
                 let randomGameIndex = Math.floor(Math.random() * userChosenGame.similar_games.length);
                 console.log(randomGameIndex)
                 console.log(userChosenGame.similar_games[randomGameIndex])
+                const boxArtHolder = document.querySelector('.--recommender-box-art-holder')
+                if (boxArtHolder) {
+                        boxArtHolder.addEventListener('click', handleBoxArtClick)
+                }
         }, [])
+
+        function handleBoxArtClick () {
+                console.log('box Art clicked!')
+        }
 
         // here, we need to generate that random number, based on how long a game's similar games array is, to determine which game will be recommended to the user.
 
@@ -47,6 +55,7 @@ const Recommender = () => {
                                 boxArtHolder.setAttribute('x', '215');
                                 boxArtHolder.setAttribute('y', '275');
                                 boxArtHolder.style.backgroundImage = `url(${userChosenGameCover})`;
+                                boxArtHolder.addEventListener('click', handleBoxArtClick)
                                 newSvg.appendChild(boxArtHolder);
 
                                 const instructionsHolder = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');

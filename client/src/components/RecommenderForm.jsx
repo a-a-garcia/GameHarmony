@@ -18,7 +18,7 @@ const RecommenderForm = () => {
                   'X-Requested-With' : 'XMLHttpRequest'
     };
 
-    let requestData = `fields name, cover, similar_games;
+    let requestData = `fields name, cover, url, similar_games;
     where name = "${userInput}";`
 
     useEffect(() => {
