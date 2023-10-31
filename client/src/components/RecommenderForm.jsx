@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const RecommenderForm = () => {
     const { userChosenGame, updateUserChosenGame, updateUserChosenGameCover} = useRecommender();
     const [ userInput, setUserInput ] = useState('');
+    const [ isMounted, setIsMounted ] = useState(true);
     const navigate = useNavigate();
     
     let apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/games';

@@ -38,6 +38,10 @@ why?
 
 currently, I'm querying the database directly with whatever the user inputs. However, you must enter the name EXACTLY as its cataloged in the IGDB API database, or else you'll get nothing. I even tried typing The Legend Of Zelda: Tears of the Kingdom and it gave me undefined because I had capitalized the "o" in the first "of".... is there any way i can sanitize the input? or am i just at the mercy of the API?
 
+4. Could not add a simple on click event listener to svg foreignObject (which is where some crucial dynamic information is rendered - the game artwork, the like/dislike buttons) - tried a million different ways, but it seems that foreignObjects are easily styled like regular DOM elements, but do NOT integrate event listeners the same way as reg dom elements. Would not even get a .addEventListener(console.log('click')) to work.
+
+solution - used vanilla html + css to display, position, and add functionality to the items on the recommender graphic I needed to be responsive - the album artwork, the like and dislike buttons. Was hesitatnt to do so at first because I was afraid it would be difficult to make the content move/re-size responsively, but after some research i was able to make it responsive with regular html+css.
+
 Backlog - 
 
 Fix styling for responsiveness & mobile (write media queries)

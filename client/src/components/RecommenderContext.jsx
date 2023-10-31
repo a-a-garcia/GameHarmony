@@ -14,7 +14,7 @@ export function RecommenderProvider({ children }) { // { children } represents t
     //using the useStateHook to create state for the data you want to share
     const [userChosenGame, setUserChosenGame] = useState() //state for the inputted game
     const [userChosenGameCover, setUserChosenGameCover] = useState() //state for the inputted game's cover art
-    const [randomGame, setRandomGame] = useState() //state for the random game
+    const [randomGameId, setRandomGameId] = useState() //state for the random game
     const [randomGameCover, setRandomGameCover] = useState() //state for the random game's cover art
 
     //function that allows you to update the state
@@ -27,8 +27,8 @@ export function RecommenderProvider({ children }) { // { children } represents t
         setUserChosenGameCover(coverData);
       };
     
-      const updateRandomGame = (gameData) => {
-        setRandomGame(gameData);
+      const updateRandomGameId = (gameData) => {
+        setRandomGameId(gameData);
       };
     
       const updateRandomGameCover = (coverData) => {
@@ -43,11 +43,11 @@ return (
     <RecommenderContext.Provider value={{ 
         userChosenGame,
         userChosenGameCover,
-        randomGame,
+        randomGameId,
         randomGameCover,
         updateUserChosenGame,
         updateUserChosenGameCover,
-        updateRandomGame,
+        updateRandomGameId,
         updateRandomGameCover
     }}>
         {children}

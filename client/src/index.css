@@ -187,19 +187,43 @@ nav {
 }
 
 /* recommender */
+.--recommender-top-text,
+.--recommender-box-art-holder,
+.--recommender-dislike-button,
+.--recommender-like-button,
+.--recommender-box-art-holder {
+  animation-name: slide-down;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes slide-down {
+  from {
+    top: 570px;
+    opacity: 0;
+  }
+  to {
+    top: 600px;
+    opacity: 1;
+  }
+}
+
 .--recommender-form-text-container {
   color: var(--primary-color);
   line-height: 1.5;
 }
 
 .--recommender-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1%;
 }
 
-.--recommender-top-text {
+.--recommender-top-text, .--recommender-modal {
   height: 150px;
   width: 460px;
   font-size: 2rem;
@@ -210,12 +234,46 @@ nav {
   background-color: var(--primary-color);
 }
 
+.--recommender-top-text {
+  height: 130px;
+  width: 430px;
+  position: absolute;
+  transform: translate(-34%, -280%);
+}
+
 .--recommender-box-art-holder{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-84%, -50%);
   height: 600px;
   width: 460px;
   box-shadow: var(--primary-box-shadow);
   border-radius: 35px;
   background-size: cover;
+}
+
+.--recommender-box-art-holder:hover {
+  cursor: pointer;
+}
+
+.--recommender-modal {
+  position: absolute;
+  width: 220px;
+  height: 150px;
+  top: 10px; /* move the modal off-screen to the top */
+  left: 850px;
+  transform: translateX(-55%);
+  animation: slide-in 0.25s ease-in-out forwards; /* add the slide-in animation */
+}
+
+@keyframes slide-in {
+  0% {
+    top: -250px; /* start off-screen to the top */
+  }
+  100% {
+    top: -80px; /* end at the desired position */
+  }
 }
 
 .--recommender-box-art-holder:hover{
@@ -240,14 +298,19 @@ nav {
   box-shadow: var(--primary-box-shadow);
 }
 
-.--recommender-dislike-button {
-  padding: 0px 12px;
+.--recommender-dislike-button, .--recommender-like-button {
+  display: flex;
+  justify-content: center;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-290%, 380%);
   font-size: 3.5rem;
 }
 
 .--recommender-like-button {
-  padding: 5px 12px;
   font-size: 3.5rem;
+  transform: translate(-115%, 380%);
 }
 
 
