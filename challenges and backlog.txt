@@ -42,10 +42,24 @@ currently, I'm querying the database directly with whatever the user inputs. How
 
 solution - used vanilla html + css to display, position, and add functionality to the items on the recommender graphic I needed to be responsive - the album artwork, the like and dislike buttons. Was hesitatnt to do so at first because I was afraid it would be difficult to make the content move/re-size responsively, but after some research i was able to make it responsive with regular html+css.
 
+5. state would not update on click of the like button and resulted in an undefined random game title. Already had confirmGame in the dependency array for my useEffect.
+
+solution - placing the lines if(confirmGame) {...
+
+Why?
+
+The reason the if (confirmGame) line seemed to fix the issue is that it effectively delays the execution of the code block inside the useEffect until after the confirmGame state has been updated to true. In React, state updates are asynchronous, which means that when you call setConfirmGame(true), React doesn't immediately update the state. Instead, it schedules the state update and then performs the update and triggers a re-render at its own discretion.
+
+By using the useEffect with the dependency array [confirmGame], you are telling React to run the code block inside the useEffect whenever confirmGame changes. In your case, this means that it will run when confirmGame transitions from false to true.
+
 Backlog - 
 
-Fix styling for responsiveness & mobile (write media queries)
+1. Fix styling for responsiveness & mobile (write media queries)
 
-Tinder style swiping mechanism for matches.
+2. Tinder style swiping mechanism for matches.
 
-Three.js dynamic background on hero - with periodic table example, except replacing the elements with box arts.
+3. Three.js dynamic background on hero - with periodic table example, except replacing the elements with box arts.
+
+4. Explore a better recommendation algorithm/build one yourself? right now, relying on selecting a random index from  the IGDB similar_games array each game has in the API... but doesn't seem to be that great. 
+
+5. Smoothen out animations on recommender...

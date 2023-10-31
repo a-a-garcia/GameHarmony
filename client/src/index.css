@@ -191,7 +191,8 @@ nav {
 .--recommender-box-art-holder,
 .--recommender-dislike-button,
 .--recommender-like-button,
-.--recommender-box-art-holder {
+.--recommender-box-art-holder,
+.--recommender-instructions-holder {
   animation-name: slide-down;
   animation-duration: 1s;
   animation-timing-function: ease-out;
@@ -201,7 +202,7 @@ nav {
 
 @keyframes slide-down {
   from {
-    top: 570px;
+    top: 560px;
     opacity: 0;
   }
   to {
@@ -209,6 +210,26 @@ nav {
     opacity: 1;
   }
 }
+
+.slide-down {
+  animation-name: slide-down-animation;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes slide-down-animation {
+  from {
+    top: 560px;
+    opacity: 0;
+  }
+  to {
+    top: 600px;
+    opacity: 1;
+  }
+}
+
 
 .--recommender-form-text-container {
   color: var(--primary-color);
@@ -281,13 +302,17 @@ nav {
 }
 
 .--recommender-instructions-holder {
-  height: 200px;
-  width: 250px;
-  box-shadow: var(--primary-box-shadow);
+  position: absolute;
+  height: 150px;
+  width: 200px;
+  box-shadow: var(--tertiary-box-shadow);
   background-color: #2F2E41;
   border-radius: 35px;
   padding: 25px;
-  font-size: 1.75rem;
+  font-size: 1.625rem;
+  top:50%;
+  left:50%;
+  transform: translate(130%, -190%);
 }
 
 .--recommender-dislike-button, .--recommender-like-button {
@@ -320,3 +345,55 @@ nav {
   cursor: pointer;
 }
 
+#--recommender-match-modal {
+  width: 600px;
+  height: 600px;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  animation: slide-down 2s ease-in-out both;
+  box-shadow: var(--tertiary-box-shadow);
+  transition: 2s;
+  opacity: 1;
+}
+
+.--recommender-match-modal-top-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-top: 5%
+}
+
+.--recommender-match-modal-top-text h3 {
+  margin-right: 1%;
+}
+
+#--recommender-pixel-heart-gif {
+  height: 40px;
+  width: 40px;
+}
+
+.--recommender-match-modal-box-art-holder, .--recommender-match-modal-buttons {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.--recommender-match-modal-box-art-holder img {
+  height: 300px;
+  margin: 50px;
+  box-shadow: var(--primary-box-shadow);
+}
+
+.--recommender-match-modal-buttons {
+  justify-content: space-evenly;
+}
+
+.--recommender-dim {
+  opacity: 0.2;
+}
