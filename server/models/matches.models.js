@@ -9,6 +9,10 @@ const MatchSchema = new mongoose.Schema({
         type: String,
         required: [true, "Error - Game is missing cover art"]    
     },
+    igdbUrl: {
+        type: String,
+        required: [true, "Error - Game is missing IGDB URL"]
+    },
     note: {
         type: String
     }

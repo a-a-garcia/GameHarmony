@@ -39,13 +39,15 @@ const Recommender = () => {
 
         function handleLikeClick() {
                 if (confirmGame) {
+                        console.log(userChosenGame.name)
+                        console.log(userChosenGameCover)
+                        console.log(userChosenGame.url)
                         setShowMatchModal(true);
                 } else {
                         let randomGameIndex = Math.floor(Math.random() * userChosenGame.similar_games.length);
                         updateRandomGameId(userChosenGame.similar_games[randomGameIndex]);
                         axios.post(apiUrl, requestData, { headers })
                                 .then((response) => {
-                                        console.log(response.data[0])
                                         updateUserChosenGame({name : response.data[0].name, url: response.data[0].url});
                                         axios.post('http://localhost:8080/https://api.igdb.com/v4/covers', `fields image_id; where id = ${response.data[0].cover};`, { headers })
                                                 .then((response) => {
@@ -60,7 +62,6 @@ const Recommender = () => {
                                         document.querySelector(`.--recommender-dislike-button`).textContent = '💔';
                                         document.querySelector('.--recommender-like-button').textContent = '💖';
                                         document.querySelector('.--recommender-instructions-holder').textContent = `Here's a game you might like! Click the 💖 to match! or 💔 to not.`;
-                                        console.log(userChosenGameCover);
                                         setConfirmGame(true);
                                 })
                                 .catch((error) => {
@@ -83,6 +84,17 @@ const Recommender = () => {
             setShowInfoModal(false);
         }
 
+        function handleConfirmMatch(event) {
+                updateUserChosenGame(null);
+                updateUserChosenGameCover(null);
+                updateRandomGameId(null);
+                if (event.target.id == '--recommender-go-to-matches-btn') {
+                        navigate('/matches');
+                } else {
+                        navigate('/');
+                }
+        }
+
     return (
             <div>
                 { showMatchModal ? 
@@ -96,8 +108,8 @@ const Recommender = () => {
                                         <img src={userChosenGameCover} />
                                 </div>
                                 <div className='--recommender-match-modal-buttons'>
-                                        <button>Go to Matches</button>
-                                        <button>Recommend Again</button>
+                                        <button onClick={handleConfirmMatch} id="--recommender-go-to-matches-btn">Go to Matches</button>
+                                        <button onClick={handleConfirmMatch} id="--recommender-recommend-again-btn">Recommend Again</button>
                                 </div>
                         </div>
                         ) 

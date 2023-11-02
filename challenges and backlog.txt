@@ -63,3 +63,5 @@ Backlog -
 4. Explore a better recommendation algorithm/build one yourself? right now, relying on selecting a random index from  the IGDB similar_games array each game has in the API... but doesn't seem to be that great. 
 
 5. Smoothen out animations on recommender...
+
+6. add information in regards to games genre, what systems its available on. how/where to purchase game.
