@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost/game_harmony', {
     .catch(err => console.error('Could not connect to MongoDB', err));
 
 // Routes TBD
-// require('./routes/')(app);
+require('./routes/matches.routes')(app);
 
 // Start server
 app.listen(port, () => console.log(`Server started on port ${port}`));

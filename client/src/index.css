@@ -397,3 +397,47 @@ nav {
 .--recommender-dim {
   opacity: 0.2;
 }
+
+/* Matches Page */
+.--matches-page {
+  /* height: 50vh; */
+}
+
+.--matches-card {
+  margin: 2% auto;
+  width: 50%;
+  border: 2.5px solid var(--quaternary-color);
+  background-color: var(--secondary-color);
+  box-shadow: var(--primary-box-shadow);
+  color: var(--primary-color);
+}
+
+.--matches-card-header {
+  border-bottom: 2.5px solid var(--quaternary-color);
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--primary-box-shadow);
+}
+
+.--matches-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.--matches-card-body {
+  width: 90%;
+  margin: 5% 0;
+  min-height: 300px;
+  border: 1px solid var(--primary-color);
+  box-shadow: var(--primary-box-shadow);
+  background-color: var(--tertiary-color);
+}
+
+.--matches-card-right-side {
+
+}
