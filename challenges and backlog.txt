@@ -65,3 +65,5 @@ Backlog -
 5. Smoothen out animations on recommender...
 
 6. add information in regards to games genre, what systems its available on. how/where to purchase game.
+
+7. Make it so that if a game has already been matched, it cannot be recommended or matched again.

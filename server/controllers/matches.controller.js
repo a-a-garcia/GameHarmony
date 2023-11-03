@@ -15,9 +15,9 @@ module.exports = {
     },
 
     deleteMatch(req, res) {
-        Matches.deleteOne({ _id: req.params.id }
+        Matches.deleteOne({ _id: req.params.id })
             .then(deleteConfirmation => res.status(200).json(deleteConfirmation))
-            .catch(err => res.status(400).json(err)));
+            .catch(err => res.status(400).json(err));
     }
     
 }

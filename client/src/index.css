@@ -399,22 +399,23 @@ nav {
 }
 
 /* Matches Page */
-.--matches-page {
-  /* height: 50vh; */
-}
 
 .--matches-card {
   margin: 2% auto;
   width: 50%;
   border: 2.5px solid var(--quaternary-color);
-  background-color: var(--secondary-color);
   box-shadow: var(--primary-box-shadow);
   color: var(--primary-color);
+  background: url(./assets/pixel-heart-1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .--matches-card-header {
-  border-bottom: 2.5px solid var(--quaternary-color);
+  border: 2.5px solid var(--primary-color);
   width: 100%;
+  background-color: var(--secondary-color);
   text-align: center;
   box-shadow: var(--primary-box-shadow);
 }
@@ -422,22 +423,94 @@ nav {
 .--matches-holder {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 100%;
-  max-height: 70vh;
-  overflow-y: scroll;
+  height: 70vh;
+  position: relative;
+  overflow-y: auto;
+}
+
+.--matches-empty {
+  font-size: 2rem;
 }
 
 .--matches-card-body {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   width: 90%;
   margin: 5% 0;
-  min-height: 300px;
+  min-height: 350px;
   border: 1px solid var(--primary-color);
   box-shadow: var(--primary-box-shadow);
   background-color: var(--tertiary-color);
+  overflow: auto;
+  background-color: rgba(230, 230, 230, 0.95);
+}
+
+.--matches-card-body > * {
+  background-color: transparent;
+}
+
+.--matches-card-left-side img {
+  height: 225px;
+  width: 175px;
+  box-shadow: var(--primary-box-shadow);
+}
+
+.--matches-card-left-side img:hover {
+  box-shadow: var(--tertiary-box-shadow);
+  transition: 0.5s;
+  cursor: pointer;
+  box-shadow: var(--tertiary-box-shadow)
 }
 
 .--matches-card-right-side {
+  display: flex;
+  flex-direction: column;
+}
 
+.--matches-card-right-side > *{
+  margin: 2%;
+}
+
+.--matches-card-right-side {
+  width: 50%;
+  display: flex;
+}
+
+.--matches-card-right-side h3 {
+  font-size: 3rem;
+}
+
+.--matches-card-right-side h3:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.--matches-note {
+  border: 1px solid var(--quaternary-color);
+  color: var(--quaternary-color);
+  height: 100px;
+  padding: 1.5%;
+  font-size: 1.5rem;
+}
+
+.--matches-card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.--matches-card-buttons button {
+  height: 50px !important;
+  width: 75px !important;
+  font-size: 1rem;
+}
+
+.--matches-btn1 {
+  background-color: var(--primary-color);
+}
+.--matches-btn1:hover {
+  border: 1.5px solid var(--quaternary-color);
 }
