@@ -4,6 +4,7 @@ import '../index.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+
 const Matches = () => {
   const [ matches, setMatches ] = useState([]);
 
@@ -23,7 +24,7 @@ const Matches = () => {
   const deleteMatch = (matchId) => {
     axios.delete(`http://localhost:8000/api/matches/delete/${matchId}`)
       .then(response => {
-        window.location.reload();
+        setMatches(matches.filter(match => match._id !== matchId));
       })
       .catch((error) => {
         // Handle API request errors here
@@ -50,9 +51,14 @@ const Matches = () => {
                   <div className="--matches-card-right-side">
                     <h3 onClick={() => window.open(`${match.igdbUrl}`)}>{match.title}</h3>
                     <hr></hr>
+                    {match.note ? 
                     <div className="--matches-note">
-                      { match.note ? match.note : "Add a note for this recommended game!"}
+                      {match.note}
+                    </div> :
+                    <div className="--matches-note-nonexisting">
+                      Click below to add a note!
                     </div>
+                    }
                     <div className="--matches-card-buttons">
                       <Link to={`/matches/note/${match._id}`}><button className="--matches-btn1">Add/Edit Note</button></Link>
                       <button onClick={() => deleteMatch(match._id)}>Unmatch</button>

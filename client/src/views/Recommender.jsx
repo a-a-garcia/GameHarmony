@@ -29,23 +29,7 @@ const Recommender = () => {
         where id = ${randomGameId};`
 
         useEffect(() => {
-                if (confirmGame) {}
-        }, [confirmGame])
-
-        function handleDislikeClick () {
-                updateUserChosenGame(null);
-                navigate('/')
-        }
-
-        function handleLikeClick() {
-                if (confirmGame) {
-                        console.log(userChosenGame.name)
-                        console.log(userChosenGameCover)
-                        console.log(userChosenGame.url)
-                        setShowMatchModal(true);
-                } else {
-                        let randomGameIndex = Math.floor(Math.random() * userChosenGame.similar_games.length);
-                        updateRandomGameId(userChosenGame.similar_games[randomGameIndex]);
+                if (randomGameId) {
                         axios.post(apiUrl, requestData, { headers })
                                 .then((response) => {
                                         updateUserChosenGame({name : response.data[0].name, url: response.data[0].url});
@@ -68,6 +52,25 @@ const Recommender = () => {
                                         // Handle API request errors here
                                         console.error(error);
                                 });
+                }
+        }, [randomGameId])
+
+        function handleDislikeClick () {
+                updateUserChosenGame(null);
+                updateUserChosenGameCover(null);
+                updateRandomGameId(null);
+                navigate('/')
+        }
+
+        function handleLikeClick() {
+                if (confirmGame) {
+                        console.log(userChosenGame.name)
+                        console.log(userChosenGameCover)
+                        console.log(userChosenGame.url)
+                        setShowMatchModal(true);
+                } else {
+                        let randomGameIndex = Math.floor(Math.random() * userChosenGame.similar_games.length);
+                        updateRandomGameId(userChosenGame.similar_games[randomGameIndex]);
                 }
         }
         

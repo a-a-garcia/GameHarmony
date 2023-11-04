@@ -52,6 +52,20 @@ The reason the if (confirmGame) line seemed to fix the issue is that it effectiv
 
 By using the useEffect with the dependency array [confirmGame], you are telling React to run the code block inside the useEffect whenever confirmGame changes. In your case, this means that it will run when confirmGame transitions from false to true.
 
+6. handleLikeClick(), on running for the first time, would sometimes either give a 400 or a TypeError: cannot read 'undefined', but on clicking the button a second time and running the function again, worked fine.
+
+solution - move the axios call out of the handleLikeClick() function, and into the useEffect, with randomGameId in the dependency array.
+
+Why?
+
+In your previous code, you were making an asynchronous API call inside the handleLikeClick function. This means that when you clicked the like button, the function would start the API call and then immediately move on to the next lines of code without waiting for the API call to complete. This is because JavaScript is non-blocking and doesn't wait for asynchronous operations to complete before moving on.
+
+This can cause issues if the next lines of code depend on the results of the API call. In your case, you were trying to access response.data[0].name, response.data[0].url, and response.data[0].cover immediately after starting the API call. If the API call hadn't completed yet, these values would be undefined, leading to the TypeError you were seeing.
+
+By moving the API call into a useEffect hook and setting randomGameId as a dependency, you ensure that the API call is made whenever randomGameId changes. The useEffect hook also has the benefit of not blocking the rest of your code while it waits for the API call to complete.
+
+The useEffect hook is designed to handle side effects in your component, such as data fetching, subscriptions, or manually changing the DOM. By using useEffect, you can better manage when these side effects occur in relation to the rest of your component's lifecycle.
+
 Backlog - 
 
 1. Fix styling for responsiveness & mobile (write media queries)
@@ -67,3 +81,5 @@ Backlog -
 6. add information in regards to games genre, what systems its available on. how/where to purchase game.
 
 7. Make it so that if a game has already been matched, it cannot be recommended or matched again.
+
+8. Fix fluidity of many things in the app.... the loading of the recommender, the loading of the notes information... etc.

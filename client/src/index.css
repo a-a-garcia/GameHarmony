@@ -104,10 +104,11 @@ nav {
   box-shadow: var(--secondary-box-shadow)
 }
 
-#--nav-link {
+.--nav-link {
   margin-right: 50px;
   font-size: 2rem;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /* hero */
@@ -455,7 +456,7 @@ nav {
 
 .--noteform-card-body textarea{
   flex-direction: column;
-  width: 90%;
+  width: 500px;
   height: 50%;
   font-size: 2rem;
   padding: 2%;
@@ -507,7 +508,7 @@ nav {
   text-decoration: underline;
 }
 
-.--matches-note {
+.--matches-note, .--matches-note-nonexisting {
   border: 1px solid var(--quaternary-color);
   color: var(--quaternary-color);
   height: 100px;
@@ -522,7 +523,7 @@ nav {
 
 .--noteform-buttons {
   width: 100%;
-  justify-content: end;
+  justify-content: center;
 }
 
 .--matches-card-buttons button, .--noteform-buttons button {
@@ -540,4 +541,38 @@ nav {
 }
 .--matches-btn1:hover {
   border: 1.5px solid var(--quaternary-color);
+}
+
+.--matches-note-nonexisting {
+  border: 1px solid grey;
+  color: grey;
+}
+
+.--validation-errors {
+  color: red !important;
+  font-size: 2rem;
+  margin: 2%;
+  border: 2px solid red;
+  padding: 1%;
+  box-shadow: var(--primary-box-shadow);
+  animation: shake 0.5s ease-in-out; /* Apply a shake animation */
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

@@ -3,7 +3,8 @@ import logo from '../assets/GameHarmony-logos_transparent.png';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = (props) => {
+  const { goToMatches } = props;
   const navigate = useNavigate();
 
   //pass props to Nav. depending on what prop it has, the link will change.
@@ -15,7 +16,10 @@ const Nav = () => {
   return (
     <nav>
         <img src={logo} alt="GameHarmony Logo" id="logo" />
-        <a id="--nav-link" onClick={returnToMain}>Home</a>
+        { goToMatches ? 
+          <a className="--nav-link" onClick={goToMatches}>Your Matches</a> :
+          <a className="--nav-link" onClick={returnToMain}>Home</a>
+        }
     </nav>
   )
 }
