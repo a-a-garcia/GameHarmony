@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import '../index.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Matches = () => {
   const [ matches, setMatches ] = useState([]);
@@ -31,7 +32,7 @@ const Matches = () => {
   }
 
   return (
-    <div className="--matches-page">
+    <div>
         <Nav />
         <div className="--matches-card">
           <div className="--matches-card-header">
@@ -53,8 +54,7 @@ const Matches = () => {
                       { match.note ? match.note : "Add a note for this recommended game!"}
                     </div>
                     <div className="--matches-card-buttons">
-                      <button className="--matches-btn1">Add Note</button>
-                      <button className="--matches-btn1">Edit Note</button>
+                      <Link to={`/matches/note/${match._id}`}><button className="--matches-btn1">Add/Edit Note</button></Link>
                       <button onClick={() => deleteMatch(match._id)}>Unmatch</button>
                     </div>
                   </div>

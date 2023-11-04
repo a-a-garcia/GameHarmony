@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const noteValidator = (note) => {
+    if (!note || note.trim() === '') {
+      throw new Error("Note can't be empty!");
+    }
+    if (note.length > 255) {
+      throw new Error("Note can't be longer than 255 characters!");
+    }
+  };
+
 const MatchSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -14,10 +23,12 @@ const MatchSchema = new mongoose.Schema({
         required: [true, "Error - Game is missing IGDB URL"]
     },
     note: {
-        type: String
+        type: String,
+        validate: [noteValidator, 'Note validation failed']
     }
     }, { timestamps: true }
 );
+
 
 const Match = mongoose.model('Match', MatchSchema);
 

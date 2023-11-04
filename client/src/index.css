@@ -400,7 +400,7 @@ nav {
 
 /* Matches Page */
 
-.--matches-card {
+.--matches-card, .--noteform-card {
   margin: 2% auto;
   width: 50%;
   border: 2.5px solid var(--quaternary-color);
@@ -412,7 +412,7 @@ nav {
   background-size: 100%;
 }
 
-.--matches-card-header {
+.--matches-card-header, .--noteform-card-header {
   border: 2.5px solid var(--primary-color);
   width: 100%;
   background-color: var(--secondary-color);
@@ -420,7 +420,7 @@ nav {
   box-shadow: var(--primary-box-shadow);
 }
 
-.--matches-holder {
+.--matches-holder, .--noteform-holder {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -435,7 +435,7 @@ nav {
   font-size: 2rem;
 }
 
-.--matches-card-body {
+.--matches-card-body, .--noteform-card-body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -446,17 +446,35 @@ nav {
   box-shadow: var(--primary-box-shadow);
   background-color: var(--tertiary-color);
   overflow: auto;
-  background-color: rgba(230, 230, 230, 0.95);
+  background-color: rgba(230, 230, 230, 0.9);
+}
+
+.--noteform-card-body {
+  flex-direction: column;
+}
+
+.--noteform-card-body textarea{
+  flex-direction: column;
+  width: 90%;
+  height: 50%;
+  font-size: 2rem;
+  padding: 2%;
+  background-color: var(--tertiary-color);
+  color: var(--quaternary-color);
 }
 
 .--matches-card-body > * {
   background-color: transparent;
 }
 
-.--matches-card-left-side img {
+.--matches-card-left-side img, .--noteform-card-body img {
   height: 225px;
   width: 175px;
   box-shadow: var(--primary-box-shadow);
+}
+
+.--noteform-card-body img {
+  margin: 2%;
 }
 
 .--matches-card-left-side img:hover {
@@ -480,7 +498,7 @@ nav {
   display: flex;
 }
 
-.--matches-card-right-side h3 {
+.--matches-card-right-side h3,  .--noteform-card-body h3 {
   font-size: 3rem;
 }
 
@@ -497,15 +515,24 @@ nav {
   font-size: 1.5rem;
 }
 
-.--matches-card-buttons {
+.--matches-card-buttons, .--noteform-buttons {
   display: flex;
   justify-content: space-between;
 }
 
-.--matches-card-buttons button {
+.--noteform-buttons {
+  width: 100%;
+  justify-content: end;
+}
+
+.--matches-card-buttons button, .--noteform-buttons button {
   height: 50px !important;
-  width: 75px !important;
-  font-size: 1rem;
+  width: 150px !important;
+  font-size: 1.25rem;
+}
+
+.--noteform-buttons button {
+  margin: 5% ;
 }
 
 .--matches-btn1 {

@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const Nav = () => {
   const navigate = useNavigate();
 
+  //pass props to Nav. depending on what prop it has, the link will change.
+
   const returnToMain = () => {
     navigate('/');
   }
