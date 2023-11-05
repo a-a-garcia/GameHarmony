@@ -15,20 +15,36 @@ const Recommender = () => {
         const [ repeatAnimation, setRepeatAnimation ] = useState(false);
         const [ showMatchModal, setShowMatchModal ] = useState(false);
         const navigate = useNavigate();
+        
+        function handleDislikeClick () {
+                updateUserChosenGame(null);
+                updateUserChosenGameCover(null);
+                updateRandomGameId(null);
+                navigate('/')
+        }
 
-        let apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/games';
-
-        const headers = {
-                      'Client-ID': 'zj74j7i1ryan48mzoicj7n5afxxvps',
-                      'Authorization': 'Bearer zbea1o83yeu6apme6xrxgd6f04ts29',
-                      'Accept': 'application/json',
-                      'X-Requested-With' : 'XMLHttpRequest'
-        };
-    
-        let requestData = `fields name, cover, url;
-        where id = ${randomGameId};`
+        function handleLikeClick() {
+                if (confirmGame) {
+                        setShowMatchModal(true);
+                } else {
+                        let randomGameIndex = Math.floor(Math.random() * userChosenGame.similar_games.length);
+                        updateRandomGameId(userChosenGame.similar_games[randomGameIndex]);
+                }
+        }
 
         useEffect(() => {
+                let apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/games';
+        
+                const headers = {
+                              'Client-ID': 'zj74j7i1ryan48mzoicj7n5afxxvps',
+                              'Authorization': 'Bearer zbea1o83yeu6apme6xrxgd6f04ts29',
+                              'Accept': 'application/json',
+                              'X-Requested-With' : 'XMLHttpRequest'
+                };
+            
+                let requestData = `fields name, cover, url;
+                where id = ${randomGameId};`
+
                 if (randomGameId) {
                         axios.post(apiUrl, requestData, { headers })
                                 .then((response) => {
@@ -54,39 +70,7 @@ const Recommender = () => {
                                 });
                 }
         }, [randomGameId])
-
-        function handleDislikeClick () {
-                updateUserChosenGame(null);
-                updateUserChosenGameCover(null);
-                updateRandomGameId(null);
-                navigate('/')
-        }
-
-        function handleLikeClick() {
-                if (confirmGame) {
-                        console.log(userChosenGame.name)
-                        console.log(userChosenGameCover)
-                        console.log(userChosenGame.url)
-                        setShowMatchModal(true);
-                } else {
-                        let randomGameIndex = Math.floor(Math.random() * userChosenGame.similar_games.length);
-                        updateRandomGameId(userChosenGame.similar_games[randomGameIndex]);
-                }
-        }
         
-
-        function handleBoxArtClick () {
-                window.open(userChosenGame.url, '_blank')
-        }
-
-        function handleMouseEnter() {
-            setShowInfoModal(true);
-        }
-
-        function handleMouseLeave() {
-            setShowInfoModal(false);
-        }
-
         function handleConfirmMatch(event) {
                 axios.post('http://localhost:8000/api/matches/new', {
                         title: userChosenGame.name,
@@ -108,14 +92,26 @@ const Recommender = () => {
                         navigate('/');
                 }
         }
+        
+        function handleBoxArtClick () {
+                window.open(userChosenGame.url, '_blank')
+        }
 
-    return (
+        function handleMouseEnter() {
+            setShowInfoModal(true);
+        }
+
+        function handleMouseLeave() {
+            setShowInfoModal(false);
+        }
+
+        return (
             <div>
                 { showMatchModal ? 
                         (
                         <div id="--recommender-match-modal">
                                 <div className='--recommender-match-modal-top-text'>
-                                        <h3>A new adventure awaits...</h3>
+                                        <h3>It's a match! A new adventure awaits..</h3>
                                         <img src={pixelHeartGif} id="--recommender-pixel-heart-gif"/>
                                 </div>
                                 <div className='--recommender-match-modal-box-art-holder'>

@@ -43,7 +43,7 @@ const BoxArtGraphic = () => {
                 const randomY = Math.random() * (window.innerHeight / 2 - 220);
                 box.style.transform = `translate(${randomX}px, ${randomY}px)`;
             });
-        }, 5000);
+        }, 6000);
     }, []);
 
   return (

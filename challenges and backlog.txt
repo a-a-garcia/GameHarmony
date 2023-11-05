@@ -70,7 +70,7 @@ Backlog -
 
 1. Fix styling for responsiveness & mobile (write media queries)
 
-2. Tinder style swiping mechanism for matches.
+2. Create a list of recommendations and allow user to swipe through them, instead of just recommending a single game
 
 3. Three.js dynamic background on hero - with periodic table example, except replacing the elements with box arts.
 
@@ -83,3 +83,9 @@ Backlog -
 7. Make it so that if a game has already been matched, it cannot be recommended or matched again.
 
 8. Fix fluidity of many things in the app.... the loading of the recommender, the loading of the notes information... etc.
+
+9. Have a "did you mean" sort of thing when user is entering input on hero
+
+10. login and reg 
+
+11. user profile

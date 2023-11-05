@@ -53,7 +53,7 @@ const Matches = () => {
                     <hr></hr>
                     {match.note ? 
                     <div className="--matches-note">
-                      {match.note}
+                    {match.note}
                     </div> :
                     <div className="--matches-note-nonexisting">
                       Click below to add a note!

@@ -7,8 +7,6 @@ const Nav = (props) => {
   const { goToMatches } = props;
   const navigate = useNavigate();
 
-  //pass props to Nav. depending on what prop it has, the link will change.
-
   const returnToMain = () => {
     navigate('/');
   }

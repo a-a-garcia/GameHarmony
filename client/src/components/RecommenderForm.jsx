@@ -21,30 +21,7 @@ const RecommenderForm = () => {
 
     let requestData = `fields name, cover, url, similar_games;
     where name = "${userInput}";`
-
-    useEffect(() => {
-      if (userChosenGame) {
-        let coverId = userChosenGame.cover
-
-        apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/covers';
-
-        requestData = `fields image_id;
-        where id=${coverId};`
-
-        axios.post(apiUrl, requestData, { headers })
-          .then((response) => {
-            const coverArtId = response.data[0].image_id;
-            const coverArtUrl = `https://images.igdb.com/igdb/image/upload/t_720p/${coverArtId}.jpg`
-            updateUserChosenGameCover(coverArtUrl);
-            navigate('/recommender')
-          })
-          .catch((error) => {
-            // Handle API request errors here
-            console.error(error);
-          });
-      }
-    }, [userChosenGame])
-
+    
     const handleSubmit = (e) => {
       e.preventDefault();
       setError('');
@@ -69,6 +46,30 @@ const RecommenderForm = () => {
           console.error(error);
         });
       }
+      
+    useEffect(() => {
+      if (userChosenGame) {
+        let coverId = userChosenGame.cover
+
+        apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/covers';
+
+        requestData = `fields image_id;
+        where id=${coverId};`
+
+        axios.post(apiUrl, requestData, { headers })
+          .then((response) => {
+            const coverArtId = response.data[0].image_id;
+            const coverArtUrl = `https://images.igdb.com/igdb/image/upload/t_720p/${coverArtId}.jpg`
+            updateUserChosenGameCover(coverArtUrl);
+            navigate('/recommender')
+          })
+          .catch((error) => {
+            // Handle API request errors here
+            console.error(error);
+          });
+      }
+    }, [userChosenGame])
+
 
 
       return (
@@ -91,15 +92,3 @@ const RecommenderForm = () => {
 }
 
 export default RecommenderForm
-      //can only access IGDB's API through a proxy server - remember to start your CORS anywhere server before running the app.
-  
-      //Then we'll use Math.random to choose a random index from the chosen game's similar games key contained in the response.
-      // we'll have to query /games with that random game ID to get the game's name, and query that game for /cover as well.
-      // we'll have to put that into it's separate state too.
-      // So in total, there will be 4 states:
-          //1 the inputted game's name
-          //2 the inputted game's cover art
-          //3 the random game's name
-          //4 the random game's cover art
-  
-      //now that recommenderForm is it's own component that's rendered on main, 
