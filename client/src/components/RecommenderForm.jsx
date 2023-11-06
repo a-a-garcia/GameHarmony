@@ -4,21 +4,23 @@ import { useRecommender } from './RecommenderContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 const RecommenderForm = () => {
     const { userChosenGame, updateUserChosenGame, updateUserChosenGameCover} = useRecommender();
     const [ userInput, setUserInput ] = useState('');
     const [ error, setError ] = useState('');
     const navigate = useNavigate();
+
     
     let apiUrl = 'http://localhost:8080/https://api.igdb.com/v4/games';
-
+    
     const headers = {
-                  'Client-ID': 'zj74j7i1ryan48mzoicj7n5afxxvps',
-                  'Authorization': 'Bearer zbea1o83yeu6apme6xrxgd6f04ts29',
-                  'Accept': 'application/json',
+      'Client-ID': import.meta.env.VITE_IGDB_API_CLIENT_ID,
+                    'Authorization': import.meta.env.VITE_IGDB_API_AUTH_TOKEN,
+                    'Accept': 'application/json',
                   'X-Requested-With' : 'XMLHttpRequest'
     };
-
+   
     let requestData = `fields name, cover, url, similar_games;
     where name = "${userInput}";`
     
