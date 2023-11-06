@@ -72,25 +72,26 @@ const Recommender = () => {
         }, [randomGameId])
         
         function handleConfirmMatch(event) {
-                axios.post('http://localhost:8000/api/matches/new', {
-                        title: userChosenGame.name,
-                        coverArt: userChosenGameCover,
-                        igdbUrl: userChosenGame.url
-                })
-                .then((response) => {
-                        console.log(response);
-                })
-                .catch((error) => {
-                        console.log(error);
-                });
-                updateUserChosenGame(null);
-                updateUserChosenGameCover(null);
-                updateRandomGameId(null);
-                if (event.target.id == '--recommender-go-to-matches-btn') {
-                        navigate('/matches');
-                } else {
-                        navigate('/');
-                }
+                axios
+                        .post("http://localhost:8000/api/matches/new", {
+                                title: userChosenGame.name,
+                                coverArt: userChosenGameCover,
+                                igdbUrl: userChosenGame.url,
+                        })
+                        .then((response) => {
+                                console.log(response);
+                                updateUserChosenGame(null);
+                                updateUserChosenGameCover(null);
+                                updateRandomGameId(null);
+                                if (event.target.id == '--recommender-go-to-matches-btn') {
+                                        navigate('/matches');
+                                } else {
+                                        navigate('/');
+                                }
+                        })
+                        .catch((error) => {
+                                console.log(error);
+                        });
         }
         
         function handleBoxArtClick () {

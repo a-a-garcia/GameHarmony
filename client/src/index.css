@@ -510,10 +510,13 @@ nav {
 
 .--matches-note, .--matches-note-nonexisting {
   border: 1px solid var(--quaternary-color);
+  max-width: 100%; /* Adjust this value as needed */
+  overflow: auto;
   color: var(--quaternary-color);
   height: 100px;
   padding: 1.5%;
   font-size: 1.5rem;
+  word-wrap: break-word;
 }
 
 .--matches-card-buttons, .--noteform-buttons {

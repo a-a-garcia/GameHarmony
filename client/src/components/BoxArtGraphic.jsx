@@ -36,14 +36,18 @@ const BoxArtGraphic = () => {
             coverArt.style.zIndex = index;
         });
 
-        setInterval(() => {
+        function updateBoxPositions() {
             const gameBoxes = document.querySelectorAll('.box-art');
             gameBoxes.forEach((box) => {
-                const randomX = Math.random() * (window.innerWidth / 2 - 220);
-                const randomY = Math.random() * (window.innerHeight / 2 - 220);
-                box.style.transform = `translate(${randomX}px, ${randomY}px)`;
+              const randomX = Math.random() * (window.innerWidth / 2 - 220);
+              const randomY = Math.random() * (window.innerHeight / 2 - 220);
+              box.style.transform = `translate(${randomX}px, ${randomY}px)`;
             });
-        }, 6000);
+        
+            setTimeout(updateBoxPositions, 5000);
+          }
+        
+        updateBoxPositions();
     }, []);
 
   return (
